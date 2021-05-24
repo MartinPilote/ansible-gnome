@@ -1,0 +1,75 @@
+---
+- include_vars: "{{ ansible_distribution }}.yml"
+
+- name: Install packages
+  package:
+    state: latest
+    name: "{{packages}}"
+
+- name: Enable GDM service
+  systemd:
+    name: gdm.service
+    state: started
+    enabled: yes
+
+- name: Enable Network Manager service
+  systemd:
+    name: NetworkManager.service
+    state: started
+    enabled: yes
+
+- name: Check if Avahi VNC icon exist
+  local_action: stat path=/usr/share/applications/bvnc.desktop
+  register: bvnc
+
+- name: Hide Avahi VNC icon
+  lineinfile:
+    path: /usr/share/applications/bvnc.desktop
+    regexp: '^NoDisplay='
+    line: NoDisplay=true
+  when: bvnc.stat.exists
+
+- name: Check if Avahi SSH icon exist
+  local_action: stat path=/usr/share/applications/bssh.desktop
+  register: bssh
+
+- name: Hide Avahi SSH icon
+  lineinfile:
+    path: /usr/share/applications/bssh.desktop
+    regexp: '^NoDisplay='
+    line: NoDisplay=true
+  when: bssh.stat.exists
+
+- name: Check if Avahi Zeroconf icon exist
+  local_action: stat path=/usr/share/applications/avahi-discover.desktop
+  register: avahidiscover
+
+- name: Hide Avahi Zeroconf icon
+  lineinfile:
+    path: /usr/share/applications/avahi-discover.desktop
+    regexp: '^NoDisplay='
+    line: NoDisplay=true
+  when: avahidiscover.stat.exists
+
+- name: Check if Avahi Zeroconf icon exist
+  local_action: stat path=/usr/share/applications/qv4l2.desktop
+  register: qv4l2
+
+- name: Hide Avahi Zeroconf icon
+  lineinfile:
+    path: /usr/share/applications/qv4l2.desktop
+    regexp: '^NoDisplay='
+    line: NoDisplay=true
+  when: qv4l2.stat.exists
+
+- name: Check if Avahi Zeroconf icon exist
+  local_action: stat path=/usr/share/applications/qvidcap.desktop
+  register: qvidcap
+
+- name: Hide Avahi Zeroconf icon
+  lineinfile:
+    path: /usr/share/applications/qvidcap.desktop
+    regexp: '^NoDisplay='
+    line: NoDisplay=true
+  when: qvidcap.stat.exists
+...
