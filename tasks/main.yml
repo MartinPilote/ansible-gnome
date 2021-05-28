@@ -6,6 +6,14 @@
     state: latest
     name: "{{packages}}"
 
+- name: Install package (aur)
+  aur:
+    use: yay
+    state: present
+    name: "{{aur}}"
+  become: yes
+  become_user: aur_builder
+
 - name: Enable GDM service
   systemd:
     name: gdm.service

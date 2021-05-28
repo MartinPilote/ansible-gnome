@@ -48,4 +48,6 @@ packages:
   - "xdg-user-dirs-gtk"
   - "yelp"
   - "noto-fonts-emoji"
+aur:
+  - "gnome-shell-extension-blur-my-shell-git"
 ...
