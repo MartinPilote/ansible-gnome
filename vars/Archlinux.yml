@@ -48,6 +48,9 @@ packages:
   - "xdg-user-dirs-gtk"
   - "yelp"
   - "noto-fonts-emoji"
+  - "polari"
+  - "gnome-shell-extensions"
 aur:
   - "gnome-shell-extension-blur-my-shell-git"
+  - "gnome-shell-extension-sound-output-device-chooser-git"
 ...
